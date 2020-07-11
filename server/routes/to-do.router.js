@@ -35,4 +35,37 @@ router.post('/', (req, res) => {
     });
 });
 
+router.put('/:id', (req, res) => {
+  const id = req.params.id;
+  const taskData = req.body;
+  const queryText = `UPDATE "to-do" SET "complete"='Y'
+      WHERE "id"=$1;`;
+  pool
+    .query(queryText, [id])
+    .then((response) => {
+      res.sendStatus(201);
+    })
+    .catch((err) => {
+      console.log('error', err);
+      res.sendStatus(500);
+    });
+});
+
+router.delete('/:id', (req, res) => {
+  const id = req.params.id;
+  const queryText = `DELETE FROM "to-do"
+      WHERE "id"=$1;`;
+  console.log(queryText);
+
+  pool
+    .query(queryText, [id])
+    .then((response) => {
+      res.sendStatus(200);
+    })
+    .catch((err) => {
+      console.log('error', err);
+      res.sendStatus(500);
+    });
+});
+
 module.exports = router;
