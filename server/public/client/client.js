@@ -47,7 +47,7 @@ function getTasks() {
                                     <input data-task-id="${task.id}"  class="js-checkbox" type="checkbox" id="taskdone" name="done">
                                     <label for="taskdone">Completed</label>
                                     </td>
-                                    <td><button data-task-id="${task.id}" class="js-delete-btn"> Delete Task</button></td>
+                                    <td><button data-task-id="${task.id}" class="js-delete-btn bye-btn btn-danger">Delete</button></td>
                                     </tr>`);
         } else {
           $('.js-table-body').append(`<tr>
@@ -56,7 +56,7 @@ function getTasks() {
                                     <input data-task-id="${task.id}" class="js-checkbox" type="checkbox" id="taskdone" name="done" checked>
                                     <label for="taskdone">Completed</label>
                                     </td>
-                                    <td><button data-task-id="${task.id}"  class="js-delete-btn"> Delete Task</button></td>
+                                    <td><button data-task-id="${task.id}"  class="js-delete-btn bye-btn btn-danger">Delete</button></td>
                                     </tr>`);
         }
       }
@@ -85,10 +85,7 @@ function deleteTask(taskId) {
     });
 }
 
-function clickComplete() {
-  const id = $(this).data('taskId');
-  updateTask(id);
-}
+function clickComplete() {}
 
 function updateTask(id) {
   $.ajax({

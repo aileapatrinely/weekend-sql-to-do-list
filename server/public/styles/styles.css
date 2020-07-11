@@ -1,7 +1,61 @@
 .orange {
-  background-color: orange;
+  background-color: #d66853;
 }
 
 h1 {
   text-align: center;
+  color: #212d40;
+  font-size: 4rem;
+  font-weight: bolder;
+  margin-bottom: 50px;
+}
+
+h2 {
+  text-align: center;
+  color: #212d40;
+  font-weight: bold;
+}
+
+body {
+  background-image: url(photo-1528458965990-428de4b1cb0d.jpeg);
+}
+
+#Layer_1 {
+  color: red;
+}
+
+.add-btn {
+  background-color: #7d4e57;
+  border: 1px solid #472d31;
+}
+
+.bye-btn {
+  background-color: #364156;
+  border: 1px solid #283141;
+}
+
+tr {
+  border: 2px solid #212d40;
+}
+
+thead {
+  border: 4px dashed #ac6a74;
+  color: #422a2e;
+}
+
+table {
+  margin: auto;
+}
+
+td {
+  color: #422a2e;
+}
+
+.form {
+  margin-bottom: 50px;
+  margin-top: 50px;
+}
+
+.input {
+  opacity: 0.5;
 }
