@@ -3,6 +3,15 @@ $(document).ready(init);
 function init() {
   console.log('Jquery in da house!');
   $('.js-add-task').on('click', postTask);
+  $('input[type="checkbox"]').click(function () {
+    if ($(this).prop('checked') == true) {
+      clickComplete();
+    }
+    if ($(this).prop('checked') == false) {
+      getTasks();
+    }
+  });
+  $('.js-table-body').on('click', '.js-delete-btn', clickDelete);
   getTasks();
 }
 
@@ -41,22 +50,22 @@ function getTasks() {
         if (task.complete == 'N') {
           $('.js-table-body').append(`<tr>
                                     <td>${task.task}</td>
-                                    <td>${task.complete}</td>
+                                    <td class="status">${task.complete}</td>
                                     <td>
-                                    <input class="js-checkbox" type="checkbox" id="taskdone" name="done">
+                                    <input data-task-id="${task.id}"  class="js-checkbox" type="checkbox" id="taskdone" name="done">
                                     <label for="taskdone">Completed</label>
                                     </td>
-                                    <td><button class="js-delete-btn"> Delete Task</button></td>
+                                    <td><button data-task-id="${task.id}" class="js-delete-btn"> Delete Task</button></td>
                                     </tr>`);
         } else {
           $('.js-table-body').append(`<tr>
                                     <td>${task.task}</td>
-                                    <td>${task.complete}</td>
+                                    <td class="status">${task.complete}</td>
                                     <td>
-                                    <input class="js-checkbox" type="checkbox" id="taskdone" name="done" checked>
+                                    <input data-task-id="${task.id}" class="js-checkbox" type="checkbox" id="taskdone" name="done" checked>
                                     <label for="taskdone">Completed</label>
                                     </td>
-                                    <td><button class="js-delete-btn"> Delete Task</button></td>
+                                    <td><button data-task-id="${task.id}"  class="js-delete-btn"> Delete Task</button></td>
                                     </tr>`);
         }
       }
@@ -85,8 +94,22 @@ function deleteTask(taskId) {
     });
 }
 
-// function clickComplete(){
+function clickComplete() {
+  const id = $(this).data('taskId');
+  updateTask(id);
+}
 
-// }
-
-// function updateTask(id,)
+function updateTask(id) {
+  $.ajax({
+    type: 'PUT',
+    url: `tasks/${id}`,
+    data: { complete: 'Y' },
+  })
+    .then((response) => {
+      getTasks();
+    })
+    .catch((err) => {
+      console.log('err:', err);
+      alert('Check updateTask');
+    });
+}
