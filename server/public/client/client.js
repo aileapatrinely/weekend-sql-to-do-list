@@ -9,7 +9,7 @@ function postTask() {
   console.log('In function postTask');
   const taskToSend = {
     task: $('.js-task').val(),
-    complete: 'N',
+    complete: $('.js-y-n').val(),
   };
   console.log(taskToSend);
   $.ajax({

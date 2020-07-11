@@ -8,8 +8,8 @@ router.get('/', (req, res) => {
   let queryText = `SELECT * FROM "to-do" ORDER BY "complete" ASC;`;
   pool
     .query(queryText)
-    .then((result) => {
-      res.send(result.rows);
+    .then((response) => {
+      res.send(response.rows);
     })
     .catch((error) => {
       console.log(`Error in GET /tasks ${error}`);
@@ -24,7 +24,7 @@ router.post('/', (req, res) => {
   const queryText = `INSERT INTO "to-do" ("task", "complete")
                          VALUES ($1, $2);`;
   pool
-    .query(queryText, [taskToAdd.task, taskToAdd.complete])
+    .query(queryText, [tasktoAdd.task, tasktoAdd.complete])
     .then((response) => {
       console.log(response);
       res.sendStatus(201);
