@@ -3,14 +3,7 @@ $(document).ready(init);
 function init() {
   console.log('Jquery in da house!');
   $('.js-add-task').on('click', postTask);
-  $('input[type="checkbox"]').click(function () {
-    if ($(this).prop('checked') == true) {
-      clickComplete();
-    }
-    if ($(this).prop('checked') == false) {
-      getTasks();
-    }
-  });
+  $('.js-table-body').on('click', '.js-checkbox', toggleClass);
   $('.js-table-body').on('click', '.js-delete-btn', clickDelete);
   getTasks();
 }
@@ -50,7 +43,6 @@ function getTasks() {
         if (task.complete == 'N') {
           $('.js-table-body').append(`<tr>
                                     <td>${task.task}</td>
-                                    <td class="status">${task.complete}</td>
                                     <td>
                                     <input data-task-id="${task.id}"  class="js-checkbox" type="checkbox" id="taskdone" name="done">
                                     <label for="taskdone">Completed</label>
@@ -60,7 +52,6 @@ function getTasks() {
         } else {
           $('.js-table-body').append(`<tr>
                                     <td>${task.task}</td>
-                                    <td class="status">${task.complete}</td>
                                     <td>
                                     <input data-task-id="${task.id}" class="js-checkbox" type="checkbox" id="taskdone" name="done" checked>
                                     <label for="taskdone">Completed</label>
@@ -112,4 +103,9 @@ function updateTask(id) {
       console.log('err:', err);
       alert('Check updateTask');
     });
+}
+
+function toggleClass() {
+  $(this).parent().parent().toggleClass('orange');
+  clickComplete();
 }
