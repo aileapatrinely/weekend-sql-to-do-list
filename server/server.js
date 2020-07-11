@@ -6,6 +6,7 @@ const toDoRouter = require('./routes/to-do.router.js');
 
 // Required for our POST requests to work
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 app.use('/tasks', toDoRouter);
 
